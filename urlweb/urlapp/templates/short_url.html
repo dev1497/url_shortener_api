@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL Shortener</title>
+</head>
+<body style="text-align:center">
+    {% load rest_framework %}
+    <h1>URL Shortener</h1>
+    <form method="post" action="{% url 'short_url' %}">
+        {% csrf_token %}
+        <label for="long_url">Enter URL:</label>
+        <input type="text" id="long_url" name="long_url" required size="50">
+        <button type="submit">Convert url</button>
+    </form>
+     {% if short_url %}
+        <p>Shortened URL: <a href="{{ short_url }}">{{ short_url }}</a></p>
+<!--        <p>Short url clicks count: {{click_count}} </p>-->
+    {% endif %}
+    {% if message %}
+        <p style="color:red;">{{message}}</p>
+    {% endif %}
+    <h3>User Platform& Browser:</h3>
+    <p style="color:blue;"> {{meta_data}}</p>
+
+
+</body>
+</html>
